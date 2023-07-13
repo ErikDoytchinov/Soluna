@@ -1,2 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
+html{
+    height: 100%;
+ }
+
+ body{
+    background-color: black;
+    color: aliceblue;
+    height: 100%;
+
+    /* aligns box in middle of page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
