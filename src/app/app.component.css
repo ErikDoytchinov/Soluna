@@ -1,0 +1,64 @@
+html{
+    height: 100%;
+}
+
+body{
+    background-color: black;
+    color: aliceblue;
+    height: 100%;
+
+    /* aligns box in middle of page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 400px;
+    height: 600px;
+    background-color: dodgerblue;
+    outline: solid 1px white;
+    border-radius: 10px;
+
+
+    /* aligns box-contents in middle of page */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+ .weather-icon{
+    display: flex;
+    padding-top: 30px;
+    width: 200px;
+ }
+
+ .temp {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-family: 'Agdasima', sans-serif;
+    font-size: 100px;
+ }
+ 
+ .location {
+    display: flex;
+    position: absolute;
+    top: 55%;
+    padding: 0;
+    margin: 0;
+    
+    font-family: 'Agdasima', sans-serif;
+    font-size: 45px;
+ }
+
+ .stats-container{
+    display: flex;
+    padding-top: 40px;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 65px;
+ }
