@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NavComponent } from './nav/nav.component';
 
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SafeHtmlPipe, SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
+    SearchBarComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,

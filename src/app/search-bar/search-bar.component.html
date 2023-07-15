@@ -1,0 +1,7 @@
+<div id="myDropdown" class="dropdown-content">
+    <form [formGroup]="searchQuery">
+        <input type="text" placeholder="Search.." id="myInput" (keyup)="onPress()" formControlName="location">
+    </form>
+    <div [innerHTML]="locations | safeHtml" class="location">
+    </div>
+</div>
