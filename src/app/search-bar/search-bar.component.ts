@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Pipe, PipeTransform, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { map } from 'rxjs';
+import { map, skip } from 'rxjs';
 import { AppComponent } from '../app.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -26,9 +26,9 @@ export class SearchBarComponent {
     private http: HttpClient,
     private appComponent: AppComponent,
   ){}
-  
 
-  //create a formGroup object 
+
+  //create a formGroup object
   public searchQuery = new FormGroup({
     location: new FormControl(''),
   });
@@ -52,7 +52,6 @@ export class SearchBarComponent {
     var idAttr = target.attributes.id;
     var value = idAttr.nodeValue;
 
-    console.log(this.locArray[value]);
     this.lat = this.locArray[value].lat;
     this.lon = this.locArray[value].lon;
 
@@ -63,25 +62,29 @@ export class SearchBarComponent {
     this.appComponent.fetchWeatherInfo();
   }
 
-  public onPress(): void {
-    this.locations = "";
-    this.locArray = [];
-    // Process data here;
-    let location = this.searchQuery.controls.location.value;
-    //start of is empty check
-    if(location?.length != 0){
+   public onPress($event): void {
+      // Process data here;
+      if($event == "shift") {return;}
+      let location = this.searchQuery.controls.location.value;
+      if(location.length == 0){console.log("WOOO"); return;} //if not empty
       const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=1e9a2252a81388fe3fff130f96a58827`;
-      this.http.get<any>(url,{responseType:'json'})
-          .pipe(map((response) => {
+      this.http.get<any>(url)
+         .pipe(map((response) => {
+            this.locArray = [];
             for(const place in response){
-              this.locArray.push({...response[place], id: place});
-              
-              this.locations += `<a class="loc" id="${place}">${response[place].name}, ${response[place].country}<a/>`;
+               this.locArray.push({...response[place], id: place});
             }
-          }))
-          .subscribe((response)=> { 
-        })
-        setTimeout(() => this.setEvent(), 1000);
-    } //if not empty
-  } 
+            return this.locArray
+         }))
+         .subscribe((response)=> {
+            console.log(response);
+         })
+      
+      this.locations = '';
+      for(const place in this.locArray){
+         this.locations += `<a class="loc" id="${place}">${this.locArray[place].name}, ${this.locArray[place].country}<a/>`;
+      }
+
+      setTimeout(() => this.setEvent(), 1000);
+   }
 }

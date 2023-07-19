@@ -1,24 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-html{
+body{
     height: 100%;
- }
-
- body{
-    background-color: black;
-    color: aliceblue;
-    height: 100%;
-
-    /* aligns box in middle of page */
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
-
- .nav{
-   display: inline;
-   background-color: aliceblue;
-
-   padding: 0;
-   margin: 0;
+    padding: 0;
+    margin: 0;
  }
