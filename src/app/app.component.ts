@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { formatNumber } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,13 @@ export class AppComponent implements OnInit{
     title = 'Soluna';
     temperature:any;
     location:any;
+    date = "Monday"
+    time = this.datepipe.transform((new Date), 'h:mm');
     searchQuery:any = {latidude: 0, longitude: 0};
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private datepipe: DatePipe
     ){}
 
     //on page load will fetchWeatherInfo

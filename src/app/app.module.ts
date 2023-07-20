@@ -6,6 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SafeHtmlPipe, SearchBarComponent } from './search-bar/search-bar.component';
 
+import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,7 @@ import { SafeHtmlPipe, SearchBarComponent } from './search-bar/search-bar.compon
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [DatePipe,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

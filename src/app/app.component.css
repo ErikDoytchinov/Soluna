@@ -2,29 +2,43 @@
    display: grid;
    height: 50px;
 
+   padding: 12px 30px 0px 30px;
+
+   background-color: #EEE3CB;
 }
 
 .main{
-   display: grid;
    padding: 0%;
+   height: calc(100vh - 63px);
 
-   grid-template-rows: 1fr, 1fr;
-   grid-template-columns: 1fr, 1fr;
-   grid-auto-flow: column;
+   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+   background-color: #EEE3CB;
+}
 
-   height: 100vh;
+.location{
+   padding: 0;
+   margin: 20px 0px 0px 0px;
+
+   font-size: 40px;
+}
+
+.date-time{
+   padding: 0;
+   margin: 0;
+
+   font-size: 14px;
 }
 
 .left-half{
-   width: 100%;
-   background-color: bisque;
-
-   display: grid;
+   width: 50%;
+   height: 100%;
+   float: left;
 }
 
 .container-top-half {
    width: 100%;
-   background-color:beige; 
+   height: 45%;
+   padding: 0px;
 
    display: flex;
    flex-direction: column;
@@ -32,18 +46,53 @@
    align-items: center;
 }
 
+.temp{
+   padding: 0;
+   margin: 0;
+
+   position: relative;
+   right: -15px;
+}
+
 .weather-icon{
-   display: flex;
-   padding-top: 30px;
-   width: 100px;
+   width: 200px;
 }
 
 .container-bottom-half {
    width: 100%;
+   height: 50%;
 }
 
+.square-box{
+   padding: 10px;
+   margin: 20px;
+
+   border-radius: 10px;
+   box-shadow: -5px 5px rgb(0 0 0 / 0.2);
+
+   height: 85%;
+   background-color: #D7C0AE;
+}
+
+.square-box p{
+   padding: 10px;
+   width: fit-content;
+
+   background-color: #9BABB8;
+   border-radius: 10px;
+}
+
+.time-slots{
+   position: relative;
+   top: 60%;
+   width: 100%;
+   height: 40%;
+   background-color: #9BABB8;
+}
 
 .right-half{
-   width: 100%;
-   background-color: blanchedalmond;
+   width: 50%;
+   height: 100%;
+   float: right;
+   /* background-color: blanchedalmond; */
 }
