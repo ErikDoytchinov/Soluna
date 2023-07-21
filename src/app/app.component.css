@@ -83,11 +83,14 @@
 
 .square-box p{
    padding: 10px;
+   margin: 0px;
    width: fit-content;
+   height: fit-content;
 
    background-color: #9BABB8;
    border-radius: 10px;
 }
+
 
 .time-slots{
    position: relative;
@@ -132,3 +135,20 @@
    float: right;
    /* background-color: blanchedalmond; */
 }
+
+.left-half-data{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+.right-half-data{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+.middle-line{
+   height: calc(100% - 30px);
+   top: 15px;
+   position: relative;
+   border-left: 1px solid black;
+} 
