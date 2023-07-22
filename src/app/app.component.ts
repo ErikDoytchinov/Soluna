@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
     future_img1:any;
     future_img2:any;
     future_img3:any; 
-    searchQuery:any = {latidude: 0, longitude: 0};
+    public searchQuery:any = {latidude: 0, longitude: 0};
 
     constructor(
         private http: HttpClient,
@@ -41,11 +41,15 @@ export class AppComponent implements OnInit{
     ){}
 
     //on page load will fetchWeatherInfo
-    ngOnInit(){
-        this.fetchWeatherInfo();
-    }
+   ngOnInit(){
+      this.fetchWeatherInfo();
+      this.getLocation();
+   }
 
     public fetchWeatherInfo(){
+      console.log(this.searchQuery.latidude);
+      console.log(this.searchQuery.longitude);
+   
       const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
@@ -96,5 +100,23 @@ export class AppComponent implements OnInit{
          .subscribe((response)=> {
             this.location = response.name;
         })
-  }  
+  } 
+  
+  getLocation() {
+   if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition((position: any) => {
+       if (position) {
+         this.searchQuery.latidude = position.coords.latitude;
+         this.searchQuery.longitude = position.coords.longitude;
+
+         this.fetchWeatherInfo();
+         console.log(this.searchQuery.latidude);
+         console.log(this.searchQuery.longitude);
+       }
+     },
+       (error: any) => console.log(error));
+   } else {
+     alert("Geolocation is not supported by this browser.");
+   }
+ }
 }
