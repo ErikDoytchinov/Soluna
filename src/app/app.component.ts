@@ -47,14 +47,9 @@ export class AppComponent implements OnInit{
    }
 
     public fetchWeatherInfo(){
-      console.log(this.searchQuery.latidude);
-      console.log(this.searchQuery.longitude);
-   
       const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
-            console.log(response);
-
             if(response.timezone_offset > 0) {
                this.time = this.datepipe.transform(new Date, 'h:mm a', `GMT+${response.timezone_offset/3600}`);
                this.date = this.datepipe.transform(new Date, 'EEEE',`GMT+${response.timezone_offset/3600}`);
@@ -110,8 +105,6 @@ export class AppComponent implements OnInit{
          this.searchQuery.longitude = position.coords.longitude;
 
          this.fetchWeatherInfo();
-         console.log(this.searchQuery.latidude);
-         console.log(this.searchQuery.longitude);
        }
      },
        (error: any) => console.log(error));

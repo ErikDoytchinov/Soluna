@@ -1,3 +1,27 @@
+@media only screen and (max-width: 900px) {
+   .main{
+      display: flex;
+      flex-flow: column;
+   }
+
+   .left-half{
+      min-width: 100%; 
+      height: fit-content;
+   }
+
+
+   .right-half{
+      float: clear;
+   }
+}
+
+@media only screen and (max-width: 450px) {
+   .container-bottom-half{
+      display: none;
+   }
+}
+
+
 .search-bar{
    display: grid;
    height: 50px;
@@ -18,6 +42,7 @@
 .location{
    padding: 0;
    margin: 20px 0px 0px 0px;
+   text-align: center;
 
    font-size: 40px;
 }
