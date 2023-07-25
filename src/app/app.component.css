@@ -62,8 +62,6 @@
    height: 85%;
 
    padding: 12px 30px 0px 30px;
-
-   background-color: #EEE3CB;
 }
 
 .main{
@@ -71,7 +69,6 @@
    min-height: calc(100%);
 
    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-   background-color: #EEE3CB;
 }
 
 .location{
