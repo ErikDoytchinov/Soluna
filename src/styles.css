@@ -1,14 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
-body{
+html{
     min-height: 100vh;
+}
+
+body{
     padding: 0;
     margin: 0;
- }
+}
 
 .body-class{
     display: grid;
     min-height: 100vh;
+
     padding: 0;
     margin: 0;
 
