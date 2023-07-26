@@ -21,7 +21,7 @@
    }
 
    .min-max .gradient-box{
-      padding: 2.2rem 1rem 2.2rem 1rem;
+      padding: 3.3rem 1rem 3.3rem 1rem;
    }
 }
 
@@ -280,9 +280,17 @@
    width: 100%;
    padding: 0;
 
+   position: relative;
+   left:20px;
+
    display: flex;
    align-items: center;
    justify-content: center;
+}
+
+.min-max .p-max{
+   position: relative;
+   left: -11px;
 }
 
 .gradient-box{

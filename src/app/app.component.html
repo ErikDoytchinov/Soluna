@@ -30,19 +30,19 @@
                   <h2>{{ temperature }}°</h2>
                </div>
                <div class="slot">
-                  <h1>{{ hour1.time }}</h1>
-                  <img src="{{ hour1.img }}" alt="weather-icon">
-                  <h2>{{ hour1.weather }}°</h2>
+                  <h1>{{ hourInfo.hour[0].time }}</h1>
+                  <img src="{{ hourInfo.hour[0].img }}" alt="weather-icon">
+                  <h2>{{ hourInfo.hour[0].weather }}°</h2>
                </div>
                <div class="slot">
-                  <h1>{{ hour2.time }}</h1>
-                  <img src="{{ hour2.img }}" alt="weather-icon">
-                  <h2>{{ hour2.weather }}°</h2>
+                  <h1>{{ hourInfo.hour[1].time }}</h1>
+                  <img src="{{ hourInfo.hour[1].img }}" alt="weather-icon">
+                  <h2>{{ hourInfo.hour[1].weather }}°</h2>
                </div>
                <div class="slot">
-                  <h1>{{ hour3.time }}</h1>
-                  <img src="{{ hour3.img }}" alt="weather-icon">
-                  <h2>{{ hour3.weather }}°</h2>
+                  <h1>{{ hourInfo.hour[2].time }}</h1>
+                  <img src="{{ hourInfo.hour[2].img }}" alt="weather-icon">
+                  <h2>{{ hourInfo.hour[2].weather }}°</h2>
                </div>
             </div>
          </div>
@@ -52,79 +52,79 @@
       <!-- day 1 -->
       <div class="day-slot">
          <div class="date-time">
-            <p>{{ day1.date }}</p>
-            <img src="{{ day1.img }}">
-            <h1>{{ day1.weather }}</h1>
+            <p>{{ dayInfo.day[0].date }}</p>
+            <img src="{{ dayInfo.day[0].img }}">
+            <h1>{{ dayInfo.day[0].weather }}</h1>
          </div>
          <div class="min-max">
-            <p>{{ day1.min }}</p>
+            <p>{{ dayInfo.day[0].min }}°</p>
             <div class="gradient-box"><div class="gradient"></div></div>
-            <p>{{ day1.max }}</p>
+            <p class="p-max">{{ dayInfo.day[0].max }}°</p>
          </div>
       </div>
       <!-- day 2 -->
       <div class="day-slot">
          <div class="date-time">
-            <p>{{ day2.date }}</p>
-            <img src="{{ day2.img }}">
-            <h1>{{ day2.weather }}</h1>
+            <p>{{ dayInfo.day[1].date }}</p>
+            <img src="{{ dayInfo.day[1].img }}">
+            <h1>{{ dayInfo.day[1].weather }}</h1>
          </div>
          <div class="min-max">
-            <p>{{ day2.min }}</p>
+            <p>{{ dayInfo.day[1].min }}°</p>
             <div class="gradient-box"><div class="gradient"></div></div>
-            <p>{{ day2.max }}</p>
+            <p class="p-max">{{ dayInfo.day[1].max }}°</p>
          </div>
       </div>
       <!-- day 3 -->
       <div class="day-slot">
          <div class="date-time">
-            <p>{{ day3.date }}</p>
-            <img src="{{ day3.img }}">
-            <h1>{{ day3.weather }}</h1>
+            <p>{{ dayInfo.day[2].date }}</p>
+            <img src="{{ dayInfo.day[2].img }}">
+            <h1>{{ dayInfo.day[2].weather }}</h1>
          </div>
          <div class="min-max">
-            <p>{{ day3.min }}</p>
+            <p>{{ dayInfo.day[2].min }}°</p>
             <div class="gradient-box"><div class="gradient"></div></div>
-            <p>{{ day3.max }}</p>
+            <p class="p-max">{{ dayInfo.day[2].max }}°</p>
          </div>
       </div>
       <!-- day 4 -->
       <div class="day-slot">
          <div class="date-time">
-            <p>{{ day4.date }}</p>
-            <img src="{{ day4.img }}">
-            <h1>{{ day4.weather }}</h1>
+            <p>{{ dayInfo.day[3].date }}</p>
+            <img src="{{ dayInfo.day[3].img }}">
+            <h1>{{ dayInfo.day[3].weather }}</h1>
          </div>
          <div class="min-max">
-            <p>{{ day4.min }}</p>
+            <p>{{ dayInfo.day[3].min }}°</p>
             <div class="gradient-box"><div class="gradient"></div></div>
-            <p>{{ day4.max }}</p>
+            <p class="p-max">{{ dayInfo.day[3].max }}°</p>
          </div>
       </div>
       <!-- day 5 -->
       <div class="day-slot">
          <div class="date-time">
-            <p>{{ day5.date }}</p>
-            <img src="{{ day5.img }}">
-            <h1>{{ day5.weather }}</h1>
+            <p>{{ dayInfo.day[4].date }}</p>
+            <img src="{{ dayInfo.day[4].img }}">
+            <h1>{{ dayInfo.day[4].weather }}</h1>
          </div>
          <div class="min-max">
-            <p>{{ day5.min }}</p>
+            <p>{{ dayInfo.day[4].min }}°</p>
             <div class="gradient-box"><div class="gradient"></div></div>
-            <p>{{ day5.max }}</p>
+            <p class="p-max">{{ dayInfo.day[4].max }}°</p>
          </div>
       </div>
       <!-- day 6 -->
       <div class="day-slot">
          <div class="date-time">
-            <p>{{ day6.date }}</p>
-            <img src="{{ day6.img }}">
-            <h1>{{ day6.weather }}</h1>
+            <p>{{ dayInfo.day[5].date }}</p>
+            <img src="{{ dayInfo.day[5].img }}">
+            <h1>{{ dayInfo.day[5].weather }}</h1>
          </div>
          <div class="min-max">
-            <p>{{ day6.min }}</p>
+            <p>{{ dayInfo.day[5].min }}°</p>
             <div class="gradient-box"><div class="gradient"></div></div>
-            <p>{{ day6.max }}</p>
+            <p class="p-max">{{ dayInfo.day[5].max }}°</p>
          </div>
       </div>
    </div>
