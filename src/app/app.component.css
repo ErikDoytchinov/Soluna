@@ -156,6 +156,7 @@
 .time-slots{
    position: relative;
    grid-area: time-slots;
+   padding: .3rem;
 
    width: 100%;
    height: fit-content;
