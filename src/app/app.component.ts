@@ -189,12 +189,12 @@ export class AppComponent implements OnInit{
             this.day6.max = formatNumber(response.daily[6].temp.max, "en-CA", '1.0-0');
 
             //future day weather
-            this.day1.weather = capital_letter(response.daily[0].weather[0].description);
-            this.day2.weather = capital_letter(response.daily[1].weather[0].description);
-            this.day3.weather = capital_letter(response.daily[2].weather[0].description);
-            this.day4.weather = capital_letter(response.daily[3].weather[0].description);
-            this.day5.weather = capital_letter(response.daily[4].weather[0].description);
-            this.day6.weather = capital_letter(response.daily[5].weather[0].description); 
+            this.day1.weather = capital_letter(response.daily[1].weather[0].description);
+            this.day2.weather = capital_letter(response.daily[2].weather[0].description);
+            this.day3.weather = capital_letter(response.daily[3].weather[0].description);
+            this.day4.weather = capital_letter(response.daily[4].weather[0].description);
+            this.day5.weather = capital_letter(response.daily[5].weather[0].description);
+            this.day6.weather = capital_letter(response.daily[6].weather[0].description); 
          })
 
       const urlName = `https://api.openweathermap.org/data/2.5/weather?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
