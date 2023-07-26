@@ -49,42 +49,48 @@ export class AppComponent implements OnInit{
       date: undefined,
       img: undefined,
       min: undefined,
-      max: undefined
+      max: undefined,
+      weather: undefined
    }
 
    day2: DayInfo ={
       date: undefined,
       img: undefined,
       min: undefined,
-      max: undefined
+      max: undefined,
+      weather: undefined
    }
 
    day3: DayInfo ={
       date: undefined,
       img: undefined,
       min: undefined,
-      max: undefined
+      max: undefined,
+      weather: undefined
    }
 
    day4: DayInfo ={
       date: undefined,
       img: undefined,
       min: undefined,
-      max: undefined
+      max: undefined,
+      weather: undefined
    }
 
    day5: DayInfo ={
       date: undefined,
       img: undefined,
       min: undefined,
-      max: undefined
+      max: undefined,
+      weather: undefined
    }
 
    day6: DayInfo ={
       date: undefined,
       img: undefined,
       min: undefined,
-      max: undefined
+      max: undefined,
+      weather: undefined
    }
    
 
@@ -160,7 +166,6 @@ export class AppComponent implements OnInit{
             this.day6.date = this.datepipe.transform(day, 'EEEE', `GMT+${response.timezone_offset/3600}`)
 
             //future day img
-
             this.day1.img = `/assets/icons/${response.daily[1].weather[0].icon}.png`;
             this.day2.img = `/assets/icons/${response.daily[2].weather[0].icon}.png`;
             this.day3.img = `/assets/icons/${response.daily[3].weather[0].icon}.png`;
@@ -168,9 +173,7 @@ export class AppComponent implements OnInit{
             this.day5.img = `/assets/icons/${response.daily[5].weather[0].icon}.png`;
             this.day6.img = `/assets/icons/${response.daily[6].weather[0].icon}.png`;
 
-
             //future day min-max
-
             this.day1.min = formatNumber(response.daily[1].temp.min, "en-CA", '1.0-0');
             this.day2.min = formatNumber(response.daily[2].temp.min, "en-CA", '1.0-0');
             this.day3.min = formatNumber(response.daily[3].temp.min, "en-CA", '1.0-0');
@@ -185,7 +188,13 @@ export class AppComponent implements OnInit{
             this.day5.max = formatNumber(response.daily[5].temp.max, "en-CA", '1.0-0');
             this.day6.max = formatNumber(response.daily[6].temp.max, "en-CA", '1.0-0');
 
-
+            //future day weather
+            this.day1.weather = capital_letter(response.daily[0].weather[0].description);
+            this.day2.weather = capital_letter(response.daily[1].weather[0].description);
+            this.day3.weather = capital_letter(response.daily[2].weather[0].description);
+            this.day4.weather = capital_letter(response.daily[3].weather[0].description);
+            this.day5.weather = capital_letter(response.daily[4].weather[0].description);
+            this.day6.weather = capital_letter(response.daily[5].weather[0].description); 
          })
 
       const urlName = `https://api.openweathermap.org/data/2.5/weather?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;

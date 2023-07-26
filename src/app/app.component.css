@@ -207,11 +207,13 @@
 }
 
 .left-half-data{
+   min-width: 50%;
    display: grid;
    grid-template-columns: 1fr 1fr;
 }
 
 .right-half-data{
+   min-width: 50%;
    display: grid;
    grid-template-columns: 1fr 1fr;
 }
@@ -250,6 +252,7 @@
    align-items: center;
    justify-content: center;
    flex-direction: column;
+   text-align: center;
 }
 
 
@@ -257,6 +260,13 @@
    padding: 0rem;
    margin-bottom: 0px;
 }
+
+.date-time h1{
+   padding: 0rem;
+   margin-bottom: 0px;
+   font-size: .6rem;
+}
+
 
 .min-max{
    display: grid;
@@ -282,6 +292,6 @@
 .gradient{
    min-width: 100%;
    min-height: 100%;
-   background: linear-gradient(to left,#609cce, #1d5b8d);
+   background: linear-gradient(to left, #9BABB8, #7A7F82);
    border-radius: .5rem;
 }

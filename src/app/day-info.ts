@@ -3,4 +3,5 @@ export interface DayInfo {
     img:any
     min:any
     max:any
+    weather:any
 }
