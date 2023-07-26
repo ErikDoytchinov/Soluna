@@ -1,44 +1,99 @@
+import { HourInfo } from './hour-info';
+import { map } from 'rxjs';
 import { ComponentFixture } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe, formatNumber } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { DayInfo } from './day-info';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit{
-    image:string;
-    temperature:any;
-    location:string;
-    time:string;
-    date:string;
-    feelsLike:any;
-    humidity:any;
-    uvIndex:any;
-    visibility:any;
-    wind:any;
-    precipitation:any = '∞';
+   image:string;
+   temperature:any;
+   location:string;
+   time:string;
+   date:string;
+   feelsLike:any;
+   humidity:any;
+   uvIndex:any;
+   visibility:any;
+   wind:any;
+   precipitation:any = '∞';
+   weather_descriptor:any;
 
-    future_time1:any;
-    future_time2:any;
-    future_time3:any; 
+   hour1: HourInfo ={
+      time: undefined,
+      weather: undefined,
+      img: undefined
+   }
 
-    future_temp1:any;
-    future_temp2:any;
-    future_temp3:any; 
+   hour2: HourInfo ={
+      time: undefined,
+      weather: undefined,
+      img: undefined
+   }
 
-    future_img1:any;
-    future_img2:any;
-    future_img3:any; 
-    public searchQuery:any = {latidude: 0, longitude: 0};
+   hour3: HourInfo ={
+      time: undefined,
+      weather: undefined,
+      img: undefined
+   }
 
-    constructor(
-        private http: HttpClient,
-        private datepipe: DatePipe
-    ){}
+   day1: DayInfo ={
+      date: undefined,
+      img: undefined,
+      min: undefined,
+      max: undefined
+   }
+
+   day2: DayInfo ={
+      date: undefined,
+      img: undefined,
+      min: undefined,
+      max: undefined
+   }
+
+   day3: DayInfo ={
+      date: undefined,
+      img: undefined,
+      min: undefined,
+      max: undefined
+   }
+
+   day4: DayInfo ={
+      date: undefined,
+      img: undefined,
+      min: undefined,
+      max: undefined
+   }
+
+   day5: DayInfo ={
+      date: undefined,
+      img: undefined,
+      min: undefined,
+      max: undefined
+   }
+
+   day6: DayInfo ={
+      date: undefined,
+      img: undefined,
+      min: undefined,
+      max: undefined
+   }
+   
+
+   public searchQuery:any = {latidude: 0, longitude: 0};
+
+   constructor(
+      private http: HttpClient,
+      private datepipe: DatePipe
+   ){}
 
     //on page load will fetchWeatherInfo
    ngOnInit(){
@@ -66,27 +121,70 @@ export class AppComponent implements OnInit{
             this.visibility = response.current.visibility;
             if(response.minutely != undefined) {this.precipitation = response.minutely[0].precipitation;}
             this.image = `/assets/icons/${response.current.weather[0].icon}.png`;
+            this.weather_descriptor = capital_letter(response.current.weather[0].description);
 
-            //future temp
-            this.future_temp1 = formatNumber(response.hourly[1].temp, "en-CA", '1.0-0');
-            this.future_temp2 = formatNumber(response.hourly[2].temp, "en-CA", '1.0-0');
-            this.future_temp3 = formatNumber(response.hourly[3].temp, "en-CA", '1.0-0');
+            //future hour temp
+            this.hour1.weather = formatNumber(response.hourly[1].temp, "en-CA", '1.0-0');
+            this.hour2.weather = formatNumber(response.hourly[2].temp, "en-CA", '1.0-0');
+            this.hour3.weather = formatNumber(response.hourly[3].temp, "en-CA", '1.0-0');
 
-            //future time
+            //future hour time
             if(response.timezone_offset > 0) {
-               this.future_time1 = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + 1}`);
-               this.future_time2 = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + 2}`);
-               this.future_time3 = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + 3}`);
+               this.hour1.time = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + 1}`);
+               this.hour2.time = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + 2}`);
+               this.hour3.time = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + 3}`);
             } else {
-               this.future_time1 = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + 1}`);
-               this.future_time2 = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + 2}`);
-               this.future_time3 = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + 3}`);
+               this.hour1.time = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + 1}`);
+               this.hour2.time = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + 2}`);
+               this.hour3.time = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + 3}`);
             }
             
-            //future img
-            this.future_img1 = `/assets/icons/${response.hourly[1].weather[0].icon}.png`;
-            this.future_img2 = `/assets/icons/${response.hourly[2].weather[0].icon}.png`;
-            this.future_img3 = `/assets/icons/${response.hourly[3].weather[0].icon}.png`;
+            //future hour img
+            this.hour1.img = `/assets/icons/${response.hourly[1].weather[0].icon}.png`;
+            this.hour2.img = `/assets/icons/${response.hourly[2].weather[0].icon}.png`;
+            this.hour3.img = `/assets/icons/${response.hourly[3].weather[0].icon}.png`;
+
+            //future day date
+            var day = new Date();
+            day.setDate(day.getDate() + 1);
+            this.day1.date = this.datepipe.transform(day, 'EEEE', `GMT+${response.timezone_offset/3600}`)
+            day.setDate(day.getDate() + 1);
+            this.day2.date = this.datepipe.transform(day, 'EEEE', `GMT+${response.timezone_offset/3600}`)
+            day.setDate(day.getDate() + 1);
+            this.day3.date = this.datepipe.transform(day, 'EEEE', `GMT+${response.timezone_offset/3600}`)
+            day.setDate(day.getDate() + 1);
+            this.day4.date = this.datepipe.transform(day, 'EEEE', `GMT+${response.timezone_offset/3600}`)
+            day.setDate(day.getDate() + 1);
+            this.day5.date = this.datepipe.transform(day, 'EEEE', `GMT+${response.timezone_offset/3600}`)
+            day.setDate(day.getDate() + 1);
+            this.day6.date = this.datepipe.transform(day, 'EEEE', `GMT+${response.timezone_offset/3600}`)
+
+            //future day img
+
+            this.day1.img = `/assets/icons/${response.daily[1].weather[0].icon}.png`;
+            this.day2.img = `/assets/icons/${response.daily[2].weather[0].icon}.png`;
+            this.day3.img = `/assets/icons/${response.daily[3].weather[0].icon}.png`;
+            this.day4.img = `/assets/icons/${response.daily[4].weather[0].icon}.png`;
+            this.day5.img = `/assets/icons/${response.daily[5].weather[0].icon}.png`;
+            this.day6.img = `/assets/icons/${response.daily[6].weather[0].icon}.png`;
+
+
+            //future day min-max
+
+            this.day1.min = formatNumber(response.daily[1].temp.min, "en-CA", '1.0-0');
+            this.day2.min = formatNumber(response.daily[2].temp.min, "en-CA", '1.0-0');
+            this.day3.min = formatNumber(response.daily[3].temp.min, "en-CA", '1.0-0');
+            this.day4.min = formatNumber(response.daily[4].temp.min, "en-CA", '1.0-0');
+            this.day5.min = formatNumber(response.daily[5].temp.min, "en-CA", '1.0-0');
+            this.day6.min = formatNumber(response.daily[6].temp.min, "en-CA", '1.0-0');
+
+            this.day1.max = formatNumber(response.daily[1].temp.max, "en-CA", '1.0-0');
+            this.day2.max = formatNumber(response.daily[2].temp.max, "en-CA", '1.0-0');
+            this.day3.max = formatNumber(response.daily[3].temp.max, "en-CA", '1.0-0');
+            this.day4.max = formatNumber(response.daily[4].temp.max, "en-CA", '1.0-0');
+            this.day5.max = formatNumber(response.daily[5].temp.max, "en-CA", '1.0-0');
+            this.day6.max = formatNumber(response.daily[6].temp.max, "en-CA", '1.0-0');
+
 
          })
 
@@ -112,4 +210,12 @@ export class AppComponent implements OnInit{
      alert("Geolocation is not supported by this browser.");
    }
  }
+}
+
+function capital_letter(str) {
+   str = str.split(" ");
+   for (let i = 0, x = str.length; i < x; i++) {
+      str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+   }
+   return str.join(" ");
 }
