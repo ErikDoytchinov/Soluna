@@ -107,7 +107,12 @@ export class AppComponent implements OnInit{
                if(response.timezone_offset > 0) {
                   Hour.time = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + Hour.id}`);
                } else {
-                  Hour.time = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + Hour.id}`);
+                  if(response.timezone_offset/3600 + Hour.id >= 0){
+                     Hour.time = this.datepipe.transform(new Date, 'h a', `GMT+${(response.timezone_offset/3600) + Hour.id}`);
+                  } else {
+                     Hour.time = this.datepipe.transform(new Date, 'h a', `GMT${(response.timezone_offset/3600) + Hour.id}`);
+                  }
+
                }
 
                Hour.img = `/assets/icons/${response.hourly[Hour.id].weather[0].icon}.png`;
