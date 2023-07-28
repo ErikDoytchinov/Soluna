@@ -78,7 +78,6 @@
 
 .main{
    padding: 0%;
-   min-height: 100%;
 
    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
@@ -106,8 +105,8 @@
 
 .container-top-half {
    width: 100%;
-   min-height: 30%;
    padding: 0px;
+   min-height: fit-content;
 
    display: flex;
    flex-direction: column;
@@ -127,27 +126,22 @@
    width: 200px;
 }
 
-.container-bottom-half {
-   width: 100%;
-   min-height: fit-content;
-}
 
 .square-box{
    display: grid;
    grid-template-columns: 1fr 1fr;
-   grid-template-rows: 1fr 1fr;
    grid-template-areas: 
    "blah1 blah2" 
    "time-slots time-slots";
    
    padding: 10px;
-   margin: 20px;
+   margin: 10px 20px 10px 20px;
 
    border-radius: 10px;
    box-shadow: -5px 5px rgb(0 0 0 / 0.2);
 
-   min-height: 94%;
-   background-color: #D7C0AE;
+   min-height: 100%;
+   background-color: #242b54;
 }
 
 .time-slots{
@@ -182,13 +176,13 @@
    justify-content: flex-start;
    align-items: center;
 
-   background-color: #9BABB8;
+   background-color: #9aa8fe;
    box-shadow: -5px 5px rgb(0 0 0 / 0.2);
    border-radius: 10px;
 }
 
 .slot img{
-   width: 70px;
+   width: 3rem;
 }
 
 .slot h2{
@@ -199,7 +193,9 @@
 
 .right-half{
    width: 30%;
-   min-height: 100%;
+   min-height: 98%;
+   position: relative;
+   top: 1.01rem;
    float: right;
    /* background-color: blanchedalmond; */
 
@@ -226,7 +222,7 @@
    height: fit-content;
    box-shadow: -5px 5px rgb(0 0 0 / 0.2);
 
-   font-size: 1.8rem;
+   font-size: 1.4rem;
 
    background-color: #9BABB8;
    border-radius: 10px;
@@ -237,14 +233,17 @@
    margin: 10px;
    padding: 10px;
 
-   display: grid;
-   grid-auto-flow: column;
-   grid-template-columns: 1fr 1fr;
+   display: flex;
+   flex-direction: row;
 
    box-shadow: -5px 5px rgb(0 0 0 / 0.2);
 
-   background-color: #8ea5b8;
+   background-color: #9aa8fe;
    border-radius: 10px;
+}
+
+.stat-container .value{
+   margin-left: auto;
 }
 
 .right-half-data{
@@ -258,10 +257,10 @@
 
 .middle-line{
    border-left: 1px solid black;
-   top: 4rem;
-   height: 48rem;
+   top: 5.5rem;
+   height: 44rem;
    position:absolute;
-   left: 72%;
+   left: 71%;
 } 
 
 .day-slot{
@@ -271,14 +270,14 @@
    border-radius: 10px;
    box-shadow: -5px 5px rgb(0 0 0 / 0.2);
 
-   background-color: #D7C0AE;
+   background-color: #242b54;
 
    display: grid;
    grid-template-columns: 2fr 1fr;
 }
 
 .day-slot img{
-   width: 4.5rem;
+   width: 3.6rem;
 }
 
 .date-time {
@@ -305,7 +304,6 @@
    display: grid;
    grid-auto-flow: column;
 }
-
 
 .min-max p{
    margin: 0px;
