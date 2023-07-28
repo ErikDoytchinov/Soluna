@@ -1,8 +1,6 @@
-import { map } from 'rxjs';
-import { ComponentFixture } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
-import { CurrencyPipe, formatNumber } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { formatNumber } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -13,18 +11,21 @@ import { DatePipe } from '@angular/common';
 
 export class AppComponent implements OnInit{
    title:string = "Soluna"
-   image:string;
-   temperature:any;
-   location:string;
-   time:string;
-   date:string;
-   feelsLike:any;
-   humidity:any;
-   uvIndex:any;
-   visibility:any;
-   wind:any;
-   precipitation:any = '∞';
-   weather_descriptor:any;
+
+   weatherInfo = {
+      image: "loading...",
+      temperature: "loading...",
+      location: "loading...",
+      time: "loading...",
+      date: "loading...",
+      feelsLike: "loading...",
+      humidity: 0,
+      uvIndex: 0,
+      visibility: 0,
+      wind: "loading...",
+      precipitation: "∞",
+      weather_descriptor: "loading..."
+   }
 
    hourInfo = {
       hour: [
@@ -61,33 +62,33 @@ export class AppComponent implements OnInit{
       private datepipe: DatePipe
    ){}
 
-    //on page load will fetchWeatherInfo
+   //on page load will fetchWeatherInfo
    ngOnInit(){
       this.fetchWeatherInfo();
       this.getLocation();
    }
 
-    public fetchWeatherInfo(){
+   public fetchWeatherInfo(){
       const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
             if(response.timezone_offset > 0) {
-               this.time = this.datepipe.transform(new Date, 'h:mm a', `GMT+${response.timezone_offset/3600}`);
-               this.date = this.datepipe.transform(new Date, 'EEEE',`GMT+${response.timezone_offset/3600}`);
+               this.weatherInfo.time = this.datepipe.transform(new Date, 'h:mm a', `GMT+${response.timezone_offset/3600}`);
+               this.weatherInfo.date = this.datepipe.transform(new Date, 'EEEE',`GMT+${response.timezone_offset/3600}`);
             } else {
-               this.time = this.datepipe.transform(new Date, 'h:mm a', `GMT${response.timezone_offset/3600}`);
-               this.date = this.datepipe.transform(new Date, 'EEEE', `GMT${response.timezone_offset/3600}`);
+               this.weatherInfo.time = this.datepipe.transform(new Date, 'h:mm a', `GMT${response.timezone_offset/3600}`);
+               this.weatherInfo.date = this.datepipe.transform(new Date, 'EEEE', `GMT${response.timezone_offset/3600}`);
             }
 
-            this.temperature = formatNumber(response.current.temp, "en-CA", '1.0-0')
-            this.feelsLike = formatNumber(response.current.feels_like, "en-CA", '1.0-0');
-            this.humidity = response.current.humidity;
-            this.wind = `${response.current.wind_speed}m/s`;
-            this.uvIndex = response.current.uvi;
-            this.visibility = response.current.visibility;
-            if(response.minutely != undefined) {this.precipitation = response.minutely[0].precipitation;}
-            this.image = `/assets/icons/${response.current.weather[0].icon}.png`;
-            this.weather_descriptor = capital_letter(response.current.weather[0].description);
+            this.weatherInfo.temperature = formatNumber(response.current.temp, "en-CA", '1.0-0')
+            this.weatherInfo.feelsLike = formatNumber(response.current.feels_like, "en-CA", '1.0-0');
+            this.weatherInfo.humidity = response.current.humidity;
+            this.weatherInfo.wind = `${response.current.wind_speed}m/s`;
+            this.weatherInfo.uvIndex = response.current.uvi;
+            this.weatherInfo.visibility = response.current.visibility;
+            if(response.minutely != undefined) {this.weatherInfo.precipitation = response.minutely[0].precipitation;}
+            this.weatherInfo.image = `/assets/icons/${response.current.weather[0].icon}.png`;
+            this.weatherInfo.weather_descriptor = capital_letter(response.current.weather[0].description);
 
             //future hour setup
             for(let Hour of this.hourInfo.hour){
@@ -123,25 +124,25 @@ export class AppComponent implements OnInit{
       const urlName = `https://api.openweathermap.org/data/2.5/weather?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
       this.http.get<any>(urlName,{responseType:'json'})
          .subscribe((response)=> {
-            this.location = response.name;
-        })
-  } 
+            this.weatherInfo.location = response.name;
+         })
+   } 
   
-  getLocation() {
-   if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition((position: any) => {
-       if (position) {
-         this.searchQuery.latidude = position.coords.latitude;
-         this.searchQuery.longitude = position.coords.longitude;
+   getLocation() {
+      if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: any) => {
+         if (position) {
+            this.searchQuery.latidude = position.coords.latitude;
+            this.searchQuery.longitude = position.coords.longitude;
 
-         this.fetchWeatherInfo();
-       }
-     },
-       (error: any) => console.log(error));
-   } else {
-     alert("Geolocation is not supported by this browser.");
+            this.fetchWeatherInfo();
+         }
+      },
+         (error: any) => console.log(error));
+      } else {
+         alert("Geolocation is not supported by this browser.");
+      }
    }
- }
 }
 
 function capital_letter(str) {
