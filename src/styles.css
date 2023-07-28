@@ -16,5 +16,6 @@ body{
     padding: 0;
     margin: 0;
 
-    background-image: linear-gradient(to top, #eee3cb, #eadbbe, #e7d3b1, #e4caa5, #e1c299);
+    background-image: linear-gradient(to top, #7ba8ec, #6f9cf5, #6a8efc, #707fff, #7d6cff);
+    color: aliceblue;
  }

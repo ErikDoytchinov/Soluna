@@ -40,17 +40,6 @@ export class AppComponent implements OnInit{
          {id: 10, time:undefined,weather:undefined,img:undefined},
          {id: 11, time:undefined,weather:undefined,img:undefined},
          {id: 12, time:undefined,weather:undefined,img:undefined},
-         {id: 13, time:undefined,weather:undefined,img:undefined},
-         {id: 14, time:undefined,weather:undefined,img:undefined},
-         {id: 15, time:undefined,weather:undefined,img:undefined},
-         {id: 16, time:undefined,weather:undefined,img:undefined},
-         {id: 17, time:undefined,weather:undefined,img:undefined},
-         {id: 18, time:undefined,weather:undefined,img:undefined},
-         {id: 19, time:undefined,weather:undefined,img:undefined},
-         {id: 20, time:undefined,weather:undefined,img:undefined},
-         {id: 21, time:undefined,weather:undefined,img:undefined},
-         {id: 22, time:undefined,weather:undefined,img:undefined},
-         {id: 23, time:undefined,weather:undefined,img:undefined},
       ]
    }
 

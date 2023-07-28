@@ -1,3 +1,9 @@
+@media only screen and (max-width: 900px) {
+  .body-class .search-box{
+    width: 100%;
+  }
+}
+
 /* The search field */
   #myInput {
     background-image: url('src/assets/searchicon.png');
@@ -24,7 +30,7 @@
     border: 2px solid black;
     border-radius: 10px;
     
-    width: 100%;
+    width: 50%;
     height: 40px;
     z-index: 2;
     box-shadow: -5px 5px rgb(0 0 0 / 0.2);
