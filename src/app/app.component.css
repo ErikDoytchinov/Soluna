@@ -37,12 +37,16 @@
 }
 
 @media only screen and (max-width: 450px) {
-   .left-half-data {
+   .square-box .left-half-data {
+      padding: 0;
+      font-size: .5rem;
       gap: .5rem;
       height: 100%;
    }
 
-   .right-half-data {
+   .square-box .right-half-data {
+      padding: 0;
+      font-size: .5rem;
       gap: .5rem;
       height: 100%;
    }
@@ -51,8 +55,12 @@
       align-self: center;
    }  
 
-   .container-bottom-half .square-box{
-      font-size: .8rem;
+   .left-half .container-bottom-half .square-box{
+      gap: 0px;
+   }
+
+   .container-bottom-half .square-box p{
+      font-size: 0.95rem;
    }
 
    .container-bottom-half .square-box{
