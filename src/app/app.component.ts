@@ -104,7 +104,6 @@ export class AppComponent implements OnInit{
                   }
 
                }
-
                Hour.img = `/assets/icons/${response.hourly[Hour.id].weather[0].icon}.png`;
             }
 

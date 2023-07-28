@@ -1,0 +1,19 @@
+@media only screen and (max-width: 900px) {
+    .container{
+        display: none;
+    }
+}
+
+.container{
+    height: calc(100% - .8rem);
+    padding: .8rem;
+    min-width: 4rem;
+}
+
+.box{
+    height: calc(100% - .8rem);
+
+    border-radius: 10px;
+    background-color: #D7C0AE;
+    box-shadow: -5px 5px rgb(0 0 0 / 0.2);
+}

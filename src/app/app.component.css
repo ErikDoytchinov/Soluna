@@ -1,3 +1,13 @@
+@media only screen and (max-width: 1230px) and (min-width: 900px) {
+   .day-slot .date-time .img{
+      width: 4rem;
+   }
+
+   .day-slot .date-time{
+      gap: 0;
+   }
+}
+
 @media only screen and (max-width: 900px) {
    .main{
       display: flex;
@@ -63,6 +73,9 @@
    }
 }
 
+.nav-bar .nav-bar-component{
+   height: 100%;
+}
 
 .search-bar{
    display: grid;
@@ -94,7 +107,7 @@
 }
 
 .left-half{
-   width: 50%;
+   width: 70%;
    min-height: 100%;
    float: left;
 }
@@ -205,7 +218,7 @@
 }
 
 .right-half{
-   width: 50%;
+   width: 30%;
    min-height: 100%;
    float: right;
    /* background-color: blanchedalmond; */
@@ -234,7 +247,7 @@
    top: 4rem;
    height: 48rem;
    position:absolute;
-   left: 50%;
+   left: 72%;
 } 
 
 .day-slot{
@@ -247,11 +260,11 @@
    background-color: #D7C0AE;
 
    display: grid;
-   grid-template-columns: 1fr 5fr;
+   grid-template-columns: 2fr 1fr;
 }
 
 .day-slot img{
-   width: 3.5rem;
+   width: 4.5rem;
 }
 
 .date-time {
@@ -260,28 +273,23 @@
 
    display: flex;
    align-items: center;
+   gap: 3rem;
    justify-content: center;
-   flex-direction: column;
+   flex-direction: row;
    text-align: center;
 }
 
 
-.date-time p{
-   padding: 0rem;
-   margin-bottom: 0px;
-}
-
 .date-time h1{
    padding: 0rem;
-   margin-bottom: 0px;
-   font-size: .6rem;
+   margin: 0px;
+   font-size: .8rem;
 }
 
 
 .min-max{
    display: grid;
    grid-auto-flow: column;
-   grid-template-columns: 1fr 10fr 1fr;
 }
 
 
@@ -289,9 +297,6 @@
    margin: 0px;
    width: 100%;
    padding: 0;
-
-   position: relative;
-   left:20px;
 
    display: flex;
    align-items: center;

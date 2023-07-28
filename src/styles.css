@@ -12,6 +12,18 @@ body{
 .body-class{
     display: grid;
     min-height: 100vh;
+    grid-auto-flow: column;
+
+    padding: 0;
+    margin: 0;
+
+    background-image: linear-gradient(to top, #7ba8ec, #6f9cf5, #6a8efc, #707fff, #7d6cff);
+    color: aliceblue;
+ }
+
+ .wrape{
+    display: grid;
+    min-height: 100vh;
 
     padding: 0;
     margin: 0;
