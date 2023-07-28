@@ -18,14 +18,24 @@
          <div class="container-bottom-half">
             <div class="square-box">
                <div class="left-half-data">
-                  <p>Feels like </p> <p class="value"> {{ weatherInfo.feelsLike }}</p>
-                  <p>Humidity </p> <p class="value"> {{ weatherInfo.humidity }} </p>
-                  <p>UV Index </p> <p class="value"> {{ weatherInfo.uvIndex }} </p>
+                  <div class="stat-container">
+                     <p>Feels like </p> 
+                     <p class="value"> {{ weatherInfo.feelsLike }}</p>
+                  </div>
+                  <div class="stat-container">
+                     <p>UV Index </p> 
+                     <p class="value"> {{ weatherInfo.uvIndex }} </p>
+                  </div>
                </div>
                <div class="right-half-data">
-                  <p>Visibility </p> <p class="value"> {{ weatherInfo.visibility }} </p>
-                  <p>Wind </p> <p class="value"> {{ weatherInfo.wind }} </p>
-                  <p>Precipitation </p> <p class="value"> {{ weatherInfo.precipitation }} </p>
+                  <div class="stat-container">
+                     <p>Wind </p> 
+                     <p class="value"> {{ weatherInfo.wind }} </p>
+                  </div>
+                  <div class="stat-container">
+                     <p>Precipitation </p> 
+                     <p class="value"> {{ weatherInfo.precipitation }} </p>
+                  </div>
                </div>
                <div class="time-slots">
                   <div class="slot">
@@ -108,7 +118,7 @@
                </div>
             </div>
             <div class="min-max">
-               <p>{{ dayInfo.day[0].min }}°/ {{ dayInfo.day[0].max }}°</p>
+               <p>{{ dayInfo.day[0].min }}°/  {{ dayInfo.day[0].max }}°</p>
             </div>
          </div>
          <!-- day 2 -->
@@ -121,7 +131,7 @@
                </div>
             </div>
             <div class="min-max">
-               <p>{{ dayInfo.day[1].min }}°/ {{ dayInfo.day[1].max }}°</p>
+               <p>{{ dayInfo.day[1].min }}°/  {{ dayInfo.day[1].max }}°</p>
             </div>
          </div>
          <!-- day 3 -->
@@ -134,7 +144,7 @@
                </div>
             </div>
             <div class="min-max">
-               <p>{{ dayInfo.day[2].min }}°/ {{ dayInfo.day[2].max }}°</p>
+               <p>{{ dayInfo.day[2].min }}°/  {{ dayInfo.day[2].max }}°</p>
             </div>
          </div>
          <!-- day 4 -->
@@ -147,7 +157,7 @@
                </div>
             </div>
             <div class="min-max">
-               <p>{{ dayInfo.day[3].min }}°/ {{ dayInfo.day[3].max }}°</p>
+               <p>{{ dayInfo.day[3].min }}°/  {{ dayInfo.day[3].max }}°</p>
             </div>
          </div>
          <!-- day 5 -->
@@ -160,7 +170,7 @@
                </div>
             </div>
             <div class="min-max">
-               <p>{{ dayInfo.day[4].min }}°/ {{ dayInfo.day[4].max }}°</p>
+               <p>{{ dayInfo.day[4].min }}°/  {{ dayInfo.day[4].max }}°</p>
             </div>
          </div>
          <!-- day 6 -->
@@ -173,7 +183,7 @@
                </div>
             </div>
             <div class="min-max">
-               <p>{{ dayInfo.day[5].min }}°/ {{ dayInfo.day[5].max }}°</p>
+               <p>{{ dayInfo.day[5].min }}°/  {{ dayInfo.day[5].max }}°</p>
             </div>
          </div>
       </div>

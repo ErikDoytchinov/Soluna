@@ -19,6 +19,11 @@
       min-height: fit-content;
    }
 
+   .container-bottom-half .square-box p{
+      font-size: 1rem;
+      align-self: center;
+   }
+
    .main .right-half{
       float: clear;
       min-height: 100%;
@@ -29,20 +34,12 @@
    .middle-line{
       display: none;
    }
-
-   .min-max .gradient-box{
-      padding: 2.9rem 1rem 2.9rem 1rem;
-   }
 }
 
 @media only screen and (max-width: 450px) {
    .left-half-data {
       gap: .5rem;
       height: 100%;
-   }
-
-   .left-half-data p{
-      align-self: center;
    }
 
    .right-half-data {
@@ -53,7 +50,6 @@
    .right-half-data p{
       align-self: center;
    }  
-
 
    .container-bottom-half .square-box{
       font-size: .8rem;
@@ -66,10 +62,6 @@
 
    .square-box .time-slots{
       height: fit-content;
-   }
-
-   .day-slot .min-max .gradient-box{
-      padding: 3.2rem 1rem 3.2rem 1rem;
    }
 }
 
@@ -158,18 +150,6 @@
    background-color: #D7C0AE;
 }
 
-.square-box p{
-   padding: 10px;
-   margin: 0px;
-   width: fit-content;
-   height: fit-content;
-   box-shadow: -5px 5px rgb(0 0 0 / 0.2);
-
-   background-color: #9BABB8;
-   border-radius: 10px;
-}
-
-
 .time-slots{
    position: relative;
    grid-area: time-slots;
@@ -231,15 +211,49 @@
 }
 
 .left-half-data{
+   padding: 10px;
+   padding-left: 0;
    min-width: 50%;
+
    display: grid;
+   grid-auto-flow: row;
+}
+
+.square-box p{
+   padding: 5px;
+   margin: 0px;
+   width: fit-content;
+   height: fit-content;
+   box-shadow: -5px 5px rgb(0 0 0 / 0.2);
+
+   font-size: 1.8rem;
+
+   background-color: #9BABB8;
+   border-radius: 10px;
+}
+
+.stat-container{
+   width: calc(100% - 2rem);
+   margin: 10px;
+   padding: 10px;
+
+   display: grid;
+   grid-auto-flow: column;
    grid-template-columns: 1fr 1fr;
+
+   box-shadow: -5px 5px rgb(0 0 0 / 0.2);
+
+   background-color: #8ea5b8;
+   border-radius: 10px;
 }
 
 .right-half-data{
+   padding: 10px;
+   padding-left: 0;
    min-width: 50%;
+
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   grid-auto-flow: row;
 }
 
 .middle-line{
@@ -306,15 +320,4 @@
 .min-max .p-max{
    position: relative;
    left: -11px;
-}
-
-.gradient-box{
-   padding: 3rem 1rem 3rem 1rem;
-}
-
-.gradient{
-   min-width: 100%;
-   min-height: 100%;
-   background: linear-gradient(to left, #9BABB8, #7A7F82);
-   border-radius: .5rem;
 }

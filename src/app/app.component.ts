@@ -68,7 +68,7 @@ export class AppComponent implements OnInit{
       this.getLocation();
    }
 
-   public fetchWeatherInfo(){
+   fetchWeatherInfo(){
       const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
