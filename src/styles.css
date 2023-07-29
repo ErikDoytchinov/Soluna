@@ -17,6 +17,9 @@ body{
     min-height: 100%;
     flex-direction: row;
 
+    position: relative;
+    left: -110%;
+
     padding: 0;
     margin: 0;
 
@@ -24,6 +27,11 @@ body{
     border-radius: 1rem;
     background-image: linear-gradient(to top, #7ba8ec, #6f9cf5, #6a8efc, #707fff, #7d6cff);
  }
+
+.body-class-present{
+    transition: 2s;
+    left: 0;
+}
 
  .wrape{
     display: flex;
@@ -38,6 +46,8 @@ body{
     background-image: linear-gradient(to top, #7ba8ec, #6f9cf5, #6a8efc, #707fff, #7d6cff);
     color: aliceblue;
  }
+
+
 
  .nav-bar{
     width: fit-content;
