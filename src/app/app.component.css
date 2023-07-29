@@ -29,10 +29,8 @@
       min-height: 100%;
       min-width: 100%; 
       min-height: fit-content;
-   }
 
-   .middle-line{
-      display: none;
+      box-shadow: none;
    }
 }
 
@@ -275,14 +273,6 @@
    display: grid;
    grid-auto-flow: row;
 }
-
-/* .middle-line{
-   border-left: 1px solid black;
-   top: 5.5rem;
-   min-height: calc(100% - 6.4rem);
-   position:absolute;
-   left: 71%;
-}  */
 
 .day-slot{
    padding: 0px 20px 0px 20px;

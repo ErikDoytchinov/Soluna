@@ -87,7 +87,7 @@ export class AppComponent implements OnInit{
             this.weatherInfo.temperature = formatNumber(response.current.temp, "en-CA", '1.0-0')
             this.weatherInfo.feelsLike = formatNumber(response.current.feels_like, "en-CA", '1.0-0');
             this.weatherInfo.humidity = response.current.humidity;
-            this.weatherInfo.wind = `${response.current.wind_speed}m/s`;
+            this.weatherInfo.wind = formatNumber(response.current.wind_speed, "en-CA", '1.0-1');   
             this.weatherInfo.uvIndex = response.current.uvi;
             this.weatherInfo.visibility = response.current.visibility;
             if(response.minutely != undefined) {this.weatherInfo.precipitation = response.minutely[0].precipitation;}
