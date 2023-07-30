@@ -1,3 +1,4 @@
+import { AppComponent } from './../app.component';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
+   constructor(
+      private appComponent: AppComponent,
+   ){}
 
+   settingSwitch(){
+      this.appComponent.settingOn = true;
+   }
+
+   homeSwitch(){
+      this.appComponent.settingOn = false;
+   }
 }

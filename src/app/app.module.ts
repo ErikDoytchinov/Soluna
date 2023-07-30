@@ -8,6 +8,8 @@ import { SafeHtmlPipe, SearchBarComponent } from './search-bar/search-bar.compon
 
 import { DatePipe } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { HomeScreenComponent } from './home-screen/home-screen.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     SearchBarComponent,
     SafeHtmlPipe,
     NavBarComponent,
+    HomeScreenComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [DatePipe,],
+  providers: [DatePipe,HomeScreenComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
