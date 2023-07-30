@@ -1,15 +1,19 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { formatNumber } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { DataServiceService } from '../data-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-home-screen',
-  templateUrl: './home-screen.component.html',
-  styleUrls: ['./home-screen.component.css']
+   selector: 'app-home-screen',
+   templateUrl: './home-screen.component.html',
+   styleUrls: ['./home-screen.component.css']
 })
+
 export class HomeScreenComponent implements OnInit{
    title:string = "Soluna"
+   mySubscription: Subscription;
 
    weatherInfo = {
       image: "loading...",
@@ -54,12 +58,18 @@ export class HomeScreenComponent implements OnInit{
       ]
    }
 
-   public searchQuery:any = {latidude: 0, longitude: 0};
+   public searchQuery:any = {latitude: 0, longitude: 0};
 
    constructor(
       private http: HttpClient,
-      private datepipe: DatePipe
-   ){}
+      private datepipe: DatePipe,
+      private dataService: DataServiceService,
+   ){
+      this.mySubscription = dataService.newData.subscribe((data) => {
+         this.searchQuery = data
+         this.fetchWeatherInfo();
+       });
+   }
 
    //on page load will fetchWeatherInfo
    ngOnInit(){
@@ -70,8 +80,8 @@ export class HomeScreenComponent implements OnInit{
       element[0].classList.add("body-class-present");
    }
 
-   fetchWeatherInfo(){
-      const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
+   public fetchWeatherInfo(){
+      const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latitude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
             if(response.timezone_offset > 0) {
@@ -85,7 +95,7 @@ export class HomeScreenComponent implements OnInit{
             this.weatherInfo.temperature = formatNumber(response.current.temp, "en-CA", '1.0-0')
             this.weatherInfo.feelsLike = formatNumber(response.current.feels_like, "en-CA", '1.0-0');
             this.weatherInfo.humidity = response.current.humidity;
-            this.weatherInfo.wind = formatNumber(response.current.wind_speed, "en-CA", '1.0-1');   
+            this.weatherInfo.wind = `${response.current.wind_speed}m/s`;
             this.weatherInfo.uvIndex = response.current.uvi;
             this.weatherInfo.visibility = response.current.visibility;
             if(response.minutely != undefined) {this.weatherInfo.precipitation = response.minutely[0].precipitation;}
@@ -106,6 +116,7 @@ export class HomeScreenComponent implements OnInit{
                   }
 
                }
+
                Hour.img = `/assets/icons/${response.hourly[Hour.id].weather[0].icon}.png`;
             }
 
@@ -122,7 +133,7 @@ export class HomeScreenComponent implements OnInit{
             }
          })
 
-      const urlName = `https://api.openweathermap.org/data/2.5/weather?lat=${this.searchQuery.latidude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
+      const urlName = `https://api.openweathermap.org/data/2.5/weather?lat=${this.searchQuery.latitude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
       this.http.get<any>(urlName,{responseType:'json'})
          .subscribe((response)=> {
             this.weatherInfo.location = response.name;
@@ -133,7 +144,7 @@ export class HomeScreenComponent implements OnInit{
       if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: any) => {
          if (position) {
-            this.searchQuery.latidude = position.coords.latitude;
+            this.searchQuery.latitude = position.coords.latitude;
             this.searchQuery.longitude = position.coords.longitude;
 
             this.fetchWeatherInfo();
@@ -147,9 +158,9 @@ export class HomeScreenComponent implements OnInit{
 }
 
 function capital_letter(str) {
-  str = str.split(" ");
-  for (let i = 0, x = str.length; i < x; i++) {
-     str[i] = str[i][0].toUpperCase() + str[i].substr(1);
-  }
-  return str.join(" ");
+   str = str.split(" ");
+   for (let i = 0, x = str.length; i < x; i++) {
+      str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+   }
+   return str.join(" ");
 }

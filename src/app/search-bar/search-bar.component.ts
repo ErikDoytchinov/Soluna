@@ -1,9 +1,10 @@
+import { AppComponent } from './../app.component';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, Pipe, PipeTransform, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Pipe, PipeTransform, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { map } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HomeScreenComponent } from '../home-screen/home-screen.component';
+import { DataServiceService } from '../data-service.service';
 
 @Pipe({ name: 'safeHtml'})
 export class SafeHtmlPipe implements PipeTransform  {
@@ -24,7 +25,7 @@ export class SearchBarComponent {
   constructor(
     private elRef:ElementRef,
     private http: HttpClient,
-    private homeScreenComponent: HomeScreenComponent,
+    private dataService: DataServiceService,
   ){}
   
 
@@ -57,10 +58,7 @@ export class SearchBarComponent {
     this.lon = this.locArray[value].lon;
 
     //sets latidude and longitude values in the searchQuery object
-    this.homeScreenComponent.searchQuery.latidude = this.lat;
-    this.homeScreenComponent.searchQuery.longitude = this.lon;
-
-    this.homeScreenComponent.fetchWeatherInfo();
+    this.dataService.publish({latitude: this.lat, longitude: this.lon})
 
    this.searchQuery.controls['location'].setValue('');
    setTimeout(() => this.onPress(0), 10);
