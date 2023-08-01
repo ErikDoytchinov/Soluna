@@ -49,11 +49,9 @@ export class SearchBarComponent {
   }
 
   public onClick(event:any):void {
-    var target = event.target;
-    var idAttr = target.attributes.id;
-    var value = idAttr.nodeValue;
+    //gets the id number of the list location that we click
+    var value = event.target.attributes.id.nodeValue;
 
-    //console.log(this.locArray[value]);
     this.lat = this.locArray[value].lat;
     this.lon = this.locArray[value].lon;
 
@@ -67,6 +65,8 @@ export class SearchBarComponent {
   public onPress($event): void {
     this.locations = "";
     this.locArray = [];
+    document.getElementsByClassName('location-before')[0].classList.remove("location-after");
+
     // Process data here;
     let location = this.searchQuery.controls.location.value;
     //start of is empty check
@@ -75,13 +75,15 @@ export class SearchBarComponent {
       this.http.get<any>(url,{responseType:'json'})
           .pipe(map((response) => {
             for(const place in response){
+              console.log(place);
               this.locArray.push({...response[place], id: place});
-              this.locations += `<a class="loc" id="${place}">${response[place].name}, ${response[place].country}<a/>`;
+              this.locations += `<a class="loc" id="${place}">${response[place].name}, ${response[place].country}`;
             }
           }))
           .subscribe((response)=> { 
         })
         setTimeout(() => this.setEvent(), 1000);
+        document.getElementsByClassName('location-before')[0].classList.add("location-after");
     } //if not empty
   } 
 }

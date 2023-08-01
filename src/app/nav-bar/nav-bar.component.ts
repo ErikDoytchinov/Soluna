@@ -11,11 +11,25 @@ export class NavBarComponent {
       private appComponent: AppComponent,
    ){}
 
-   settingSwitch(){
-      this.appComponent.settingOn = true;
-   }
-
-   homeSwitch(){
-      this.appComponent.settingOn = false;
+   windowSwitch(window:any){
+      switch(window){
+         case "home":
+            this.appComponent.homeOn = true;
+            this.appComponent.alertOn = false;
+            this.appComponent.settingOn = false;
+            break;
+         case "alert":
+            this.appComponent.homeOn = false;
+            this.appComponent.alertOn = true;
+            this.appComponent.settingOn = false;
+            break;
+         case "setting":
+            this.appComponent.homeOn = false;
+            this.appComponent.alertOn = false;
+            this.appComponent.settingOn = true;
+            break;
+         default:
+            return;
+      }
    }
 }

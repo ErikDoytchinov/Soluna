@@ -15,8 +15,10 @@ export class HomeScreenComponent implements OnInit{
    title:string = "Soluna"
    mySubscription: Subscription;
 
+   measurement:any = "metric";
+
    weatherInfo = {
-      image: "loading...",
+      image: "/assets/icons/01d.png",
       temperature: "loading...",
       location: "loading...",
       time: "loading...",
@@ -67,7 +69,13 @@ export class HomeScreenComponent implements OnInit{
    ){
       this.mySubscription = dataService.newData.subscribe((data) => {
          this.searchQuery = data
-         this.fetchWeatherInfo();
+         if(this.searchQuery.latitude != undefined){         
+            this.fetchWeatherInfo();
+         } else {
+            this.measurement = data
+            localStorage.setItem("measurement", this.measurement);
+         }
+
        });
    }
 
@@ -81,7 +89,8 @@ export class HomeScreenComponent implements OnInit{
    }
 
    public fetchWeatherInfo(){
-      const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latitude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=metric`;
+      if(localStorage.getItem("measurement") != undefined) {this.measurement = localStorage.getItem("measurement")}
+      const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latitude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=${this.measurement}`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
             if(response.timezone_offset > 0) {

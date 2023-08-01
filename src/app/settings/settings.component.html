@@ -1,9 +1,26 @@
 <div class="body-container">
     <div class="container">
-        <!-- Rounded switch -->
-        <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-        </label>
+        <div class="option-container">
+            <p>Measurement</p>
+            <div class="button">
+                <p>C</p>
+                <label class="switch"> 
+                    <input type="checkbox" (change)="onChange($event.target)" [checked]="measurement">
+                    <span class="slider round"></span>
+                </label>
+                <p>F</p>
+            </div>
+        </div>
+        <div class="option-container">
+            <p>Location Tracking</p>
+            <div class="button">
+                <p>On</p>
+                <label class="switch"> 
+                    <input type="checkbox" (change)="onChange($event.target)" [checked]="measurement">
+                    <span class="slider round"></span>
+                </label>
+                <p>Off</p>
+            </div>
+        </div>
     </div>
 </div>

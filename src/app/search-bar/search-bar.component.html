@@ -2,6 +2,6 @@
     <form [formGroup]="searchQuery">
         <input type="text" placeholder="Search.." id="myInput" (keyup)="onPress($event)" formControlName="location">
     </form>
-    <div [innerHTML]="locations | safeHtml" class="location">
+    <div [innerHTML]="locations | safeHtml" class="location-before">
     </div>
 </div>

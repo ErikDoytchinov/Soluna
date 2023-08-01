@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SettingsComponent } from './settings/settings.component';
     NavBarComponent,
     HomeScreenComponent,
     SettingsComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

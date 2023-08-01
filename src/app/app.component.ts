@@ -8,5 +8,7 @@ import { Component} from "@angular/core";
 
 export class AppComponent{
    title:string = "Soluna"
-   settingOn:boolean = false;
+   homeOn:boolean = true;
+   alertOn:boolean;
+   settingOn:boolean;
 }

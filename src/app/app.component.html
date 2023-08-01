@@ -5,6 +5,7 @@
    <div class="search-bar">
       <app-search-bar></app-search-bar>
    </div>
-   <app-home-screen *ngIf="!settingOn" class="main"></app-home-screen>
+   <app-home-screen *ngIf="homeOn" class="main"></app-home-screen>
+   <app-alert *ngIf="alertOn" class="main"></app-alert>
    <app-settings *ngIf="settingOn" class="main"></app-settings>
 </div>
