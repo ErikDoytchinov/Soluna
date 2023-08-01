@@ -75,7 +75,6 @@ export class SearchBarComponent {
       this.http.get<any>(url,{responseType:'json'})
           .pipe(map((response) => {
             for(const place in response){
-              console.log(place);
               this.locArray.push({...response[place], id: place});
               this.locations += `<a class="loc" id="${place}">${response[place].name}, ${response[place].country}`;
             }
