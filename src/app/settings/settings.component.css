@@ -5,12 +5,14 @@
 }
 
 .container{
-    min-width: 100%;
-    min-height: 96.5%;
+    min-width: calc(100% - 2rem);
+    min-height: 96%;
     padding: 10px;
 
+    box-shadow: -5px 5px rgba(0, 0, 0, 0.2);
     background-color: #242b54;
     border-radius: 1rem;
+    
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
