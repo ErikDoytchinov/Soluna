@@ -2,12 +2,17 @@
     <div class="middle-line"></div>
     <!-- Weather Info Box -->
     <div class="container-top-half">
-       <h1 class="location">{{ weatherInfo.location }}</h1>
-       <h2 class="date-time">{{ weatherInfo.date }} | {{ weatherInfo.time }}</h2>
-       <img src="{{ weatherInfo.image }}" alt="weather-icon" class="weather-icon">
-       <h1 class="temp">{{ weatherInfo.temperature }}°</h1>
-       <div class="weather-descriptor">{{ weatherInfo.weather_descriptor }}</div>
-    </div>
+      <h1 class="timestamp">Last update: {{ lastUpdate }}</h1>
+      <h1 class="location">{{ weatherInfo.location }}</h1>
+      <h2 class="date-time">{{ weatherInfo.date }} | {{ weatherInfo.time }}</h2>
+      <img src="{{ weatherInfo.image }}" alt="weather-icon" class="weather-icon">
+      <div class="temp-container">
+      <h1 class="temp">{{ weatherInfo.temperature }}°</h1>
+      <span *ngIf="measurement == 'metric'">C</span>
+      <span *ngIf="measurement == 'imperial'">F</span>
+      </div>
+      <div class="weather-descriptor">{{ weatherInfo.weather_descriptor }}</div>
+   </div>
     <!-- Weather Stats + Hourly Weather -->
     <div class="container-bottom-half">
        <div class="square-box">

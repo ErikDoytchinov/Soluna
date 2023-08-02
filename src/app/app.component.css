@@ -3,6 +3,10 @@
       display: flex;
       flex-flow: column;
    }
+
+   .wrape .search-bar{
+      height: 3.4rem;
+   }
 }
 
 .nav-bar .nav-bar-component{

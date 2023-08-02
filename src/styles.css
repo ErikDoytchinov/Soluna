@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@media only screen and (max-width: 900px) {
+    .hover-body .body-class{
+        flex-direction: column;
+    }
+
+   .body-class .nav-bar{
+        width: 100%;
+    }
+}
 
 body{
     height: 100vh;

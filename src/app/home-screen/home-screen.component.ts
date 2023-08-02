@@ -3,7 +3,9 @@ import { formatNumber } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { DataServiceService } from '../data-service.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, interval } from 'rxjs';
+import * as moment from 'moment';
+
 
 @Component({
    selector: 'app-home-screen',
@@ -14,8 +16,8 @@ import { Subscription } from 'rxjs';
 export class HomeScreenComponent implements OnInit{
    title:string = "Soluna"
    mySubscription: Subscription;
-
    measurement:any = "metric";
+   lastUpdate:string = moment().format("h:mm a");;
 
    weatherInfo = {
       image: "/assets/icons/01d.png",
@@ -75,8 +77,12 @@ export class HomeScreenComponent implements OnInit{
             this.measurement = data
             localStorage.setItem("measurement", this.measurement);
          }
+      });
 
-       });
+      this.mySubscription= interval(60000).subscribe((x =>{
+         this.lastUpdate = moment().format("h:mm a");
+         this.fetchWeatherInfo();
+   }));
    }
 
    //on page load will fetchWeatherInfo

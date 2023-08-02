@@ -1,6 +1,17 @@
 @media only screen and (max-width: 900px) {
-    .container{
-        display: none;
+    .container .box{
+        flex-direction: row;
+    }
+
+    .box .button {
+        width: 3rem;
+        margin-bottom: 0rem;
+    }
+
+    .box .setting-button {
+        margin-left: auto;
+        margin-top: 0px;
+        width: 3rem;
     }
 }
 
