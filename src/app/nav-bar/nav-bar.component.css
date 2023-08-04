@@ -13,10 +13,15 @@
         margin-top: 0px;
         width: 3rem;
     }
+
+    #container-definer{
+        min-height: 0;
+    }
 }
 
 .container{
-    height: calc(100% - 1.4rem);
+    min-height: 47.5rem;
+    height: calc(100% - 2rem);
     padding: .8rem;
     min-width: 4rem;
 }
@@ -26,7 +31,7 @@
     padding: .4rem;
 
     border-radius: 10px;
-    background-color: #242b54;
+    background-color: #38427b;
     box-shadow: -5px 5px rgb(0 0 0 / 0.2);
 
     display: flex;

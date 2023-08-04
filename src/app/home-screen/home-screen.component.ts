@@ -27,7 +27,7 @@ export class HomeScreenComponent implements OnInit{
       date: "loading...",
       feelsLike: "loading...",
       humidity: 0,
-      uvIndex: 0,
+      uvIndex: "0",
       visibility: 0,
       wind: "loading...",
       precipitation: "∞",
@@ -79,7 +79,7 @@ export class HomeScreenComponent implements OnInit{
          }
       });
 
-      this.mySubscription= interval(60000).subscribe((x =>{
+      this.mySubscription= interval(600000).subscribe((x =>{
          this.lastUpdate = moment().format("h:mm a");
          this.fetchWeatherInfo();
    }));
@@ -92,6 +92,10 @@ export class HomeScreenComponent implements OnInit{
 
       var element = document.getElementsByClassName('body-class');
       element[0].classList.add("body-class-present");
+   }
+
+   ngOnDestroy() {
+      this.mySubscription.unsubscribe(); // Unsubscribe Observable
    }
 
    public fetchWeatherInfo(){
@@ -110,8 +114,8 @@ export class HomeScreenComponent implements OnInit{
             this.weatherInfo.temperature = formatNumber(response.current.temp, "en-CA", '1.0-0')
             this.weatherInfo.feelsLike = formatNumber(response.current.feels_like, "en-CA", '1.0-0');
             this.weatherInfo.humidity = response.current.humidity;
-            this.weatherInfo.wind = `${response.current.wind_speed}m/s`;
-            this.weatherInfo.uvIndex = response.current.uvi;
+            this.weatherInfo.wind = `${response.current.wind_speed}`;
+            this.weatherInfo.uvIndex = formatNumber(response.current.uvi, "en-CA", '1.0-0');
             this.weatherInfo.visibility = response.current.visibility;
             if(response.minutely != undefined) {this.weatherInfo.precipitation = response.minutely[0].precipitation;}
             this.weatherInfo.image = `/assets/icons/${response.current.weather[0].icon}.png`;

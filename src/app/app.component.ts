@@ -11,4 +11,5 @@ export class AppComponent{
    homeOn:boolean = true;
    alertOn:boolean;
    settingOn:boolean;
+   mapOn:boolean;
 }

@@ -16,16 +16,25 @@ export class NavBarComponent {
          case "home":
             this.appComponent.homeOn = true;
             this.appComponent.alertOn = false;
+            this.appComponent.mapOn = false;
             this.appComponent.settingOn = false;
             break;
          case "alert":
             this.appComponent.homeOn = false;
             this.appComponent.alertOn = true;
+            this.appComponent.mapOn = false;
+            this.appComponent.settingOn = false;
+            break;
+         case "map":
+            this.appComponent.homeOn = false;
+            this.appComponent.alertOn = false;
+            this.appComponent.mapOn = true
             this.appComponent.settingOn = false;
             break;
          case "setting":
             this.appComponent.homeOn = false;
             this.appComponent.alertOn = false;
+            this.appComponent.mapOn = false;
             this.appComponent.settingOn = true;
             break;
          default:

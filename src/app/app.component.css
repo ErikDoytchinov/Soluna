@@ -21,7 +21,7 @@
 }
 
 .main{
-   padding: 0%;
+   padding-bottom: .5rem;
    min-height: calc(100% - 4rem);
 
    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
