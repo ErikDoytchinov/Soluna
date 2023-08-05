@@ -5,7 +5,7 @@
 
     .box .button {
         width: 3rem;
-        margin-bottom: 0rem;
+        margin: 0rem .25rem 0.25rem .25rem;
     }
 
     .box .setting-button {
