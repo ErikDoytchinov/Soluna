@@ -4,20 +4,9 @@
       flex-flow: column;
    }
 
-   .wrape .search-bar{
+   .main-container .search-bar{
       height: 3.4rem;
    }
-}
-
-.nav-bar .nav-bar-component{
-   height: 100%;
-}
-
-.search-bar{
-   display: grid;
-   height: 4rem;
-
-   padding: 12px 10px 0px 10px;
 }
 
 .main{
@@ -25,4 +14,8 @@
    min-height: calc(100% - 4rem);
 
    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.search-bar{
+   padding: 12px 10px 0px 10px;
 }

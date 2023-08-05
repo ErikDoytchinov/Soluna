@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @media only screen and (max-width: 900px) {
-    .hover-body .body-class{
-        flex-direction: column;
+    .body-class{
+        flex-direction: column !important;
     }
 
    .body-class .nav-bar{
@@ -10,21 +10,16 @@
 }
 
 body{
-    min-height: 50rem;
-    height: 100%;
-    padding: 0;
+    min-height: 52rem;
+    height: 100vh;
     margin: 0;
-}
 
-.hover-body{
-    height: 100%;
     padding: 1.25rem;
     background-color: ghostwhite;
 }
 
 .body-class{
     display: flex;
-    min-height: 45rem;
     flex-direction: row;
 
     position: relative;
@@ -32,21 +27,21 @@ body{
 
     padding: 0;
     margin: 0;
+    height: 100%;
 
     box-shadow: -.5rem .5rem rgb(0 0 0 / 0.2);
     border-radius: 1rem;
     background-image: linear-gradient(to top, #8fb9f8, #8aaffb, #8ba5fd, #8f99fd, #988cfb);
- }
+}
 
 .body-class-present{
     transition: 2s;
     left: 0;
 }
 
- .wrape{
+.main-container{
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
     width: 100%;
 
     padding: 0;
@@ -55,7 +50,7 @@ body{
     border-radius: 1rem;
     background-image: linear-gradient(to top, #8fb9f8, #8aaffb, #8ba5fd, #8f99fd, #988cfb);
     color: aliceblue;
- }
+}
 
 
 
