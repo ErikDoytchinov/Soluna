@@ -7,9 +7,9 @@
       <h2 class="date-time">{{ weatherInfo.date }} | {{ weatherInfo.time }}</h2>
       <img src="{{ weatherInfo.image }}" alt="weather-icon" class="weather-icon">
       <div class="temp-container">
-      <h1 class="temp">{{ weatherInfo.temperature }}°</h1>
-      <span *ngIf="measurement == 'metric'">C</span>
-      <span *ngIf="measurement == 'imperial'">F</span>
+         {{ weatherInfo.temperature }}°
+         <span *ngIf="measurement == 'metric'">C</span>
+         <span *ngIf="measurement == 'imperial'">F</span>
       </div>
       <div class="weather-descriptor">{{ weatherInfo.weather_descriptor }}</div>
    </div>
