@@ -1,4 +1,3 @@
-import { AppComponent } from './../app.component';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Pipe, PipeTransform, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';

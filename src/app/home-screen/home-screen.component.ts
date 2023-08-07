@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { formatNumber } from '@angular/common';
+import { formatNumber, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { DataServiceService } from '../data-service.service';
-import { Observable, Subscription, interval } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 import * as moment from 'moment';
 
 
@@ -73,6 +72,8 @@ export class HomeScreenComponent implements OnInit{
          this.searchQuery = data
          if(this.searchQuery.latitude != undefined){         
             this.fetchWeatherInfo();
+         } else if(this.searchQuery.current != undefined){
+            return;
          } else {
             this.measurement = data
             localStorage.setItem("measurement", this.measurement);
@@ -103,6 +104,7 @@ export class HomeScreenComponent implements OnInit{
       const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${this.searchQuery.latitude}&lon=${this.searchQuery.longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=${this.measurement}`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
+            this.dataService.publish(response);
             if(response.timezone_offset > 0) {
                this.weatherInfo.time = this.datepipe.transform(new Date, 'h:mm a', `GMT+${response.timezone_offset/3600}`);
                this.weatherInfo.date = this.datepipe.transform(new Date, 'EEEE',`GMT+${response.timezone_offset/3600}`);
@@ -112,6 +114,7 @@ export class HomeScreenComponent implements OnInit{
             }
 
             this.weatherInfo.temperature = formatNumber(response.current.temp, "en-CA", '1.0-0')
+            console.log(this.weatherInfo.temperature)
             this.weatherInfo.feelsLike = formatNumber(response.current.feels_like, "en-CA", '1.0-0');
             this.weatherInfo.humidity = response.current.humidity;
             this.weatherInfo.wind = `${response.current.wind_speed}`;

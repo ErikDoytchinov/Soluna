@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as Leaflet from 'leaflet'; 
 import { DatePipe, formatNumber } from '@angular/common';

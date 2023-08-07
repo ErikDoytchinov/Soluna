@@ -10,8 +10,8 @@
 }
 
 body{
-    min-height: 52rem;
-    height: 100vh;
+    min-height: 50rem;
+    height: 100%;
     margin: 0;
 
     padding: 1.25rem;
@@ -27,16 +27,15 @@ body{
 
     padding: 0;
     margin: 0;
-    height: 100%;
 
     box-shadow: -.5rem .5rem rgb(0 0 0 / 0.2);
-    border-radius: 1rem;
     background-image: linear-gradient(to top, #8fb9f8, #8aaffb, #8ba5fd, #8f99fd, #988cfb);
 }
 
 .body-class-present{
-    transition: 2s;
+    transition: 3s;
     left: 0;
+    border-radius: 1rem;
 }
 
 .main-container{
@@ -51,8 +50,6 @@ body{
     background-image: linear-gradient(to top, #8fb9f8, #8aaffb, #8ba5fd, #8f99fd, #988cfb);
     color: aliceblue;
 }
-
-
 
  .nav-bar{
     width: fit-content;
