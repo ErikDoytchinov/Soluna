@@ -55,7 +55,7 @@
    float: right;
    width: 46.5rem;
    height: fit-content;
-   padding-bottom: 1rem;
+   padding-bottom: .5rem;
    
    margin-left: 1rem;
 
@@ -110,15 +110,28 @@
 }
 
 .temp-container{
-   display: flex;
-   }
+   border: 0;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+   margin: 0 0 0 .85rem;
+   padding: 0;
 
-.temp{
-   margin: 0;
+   font-size: 2rem;
+   font-weight: 500;
+   letter-spacing: -.5px;
 
    position: relative;
-   text-align: center;
-   right: -15px;
+}
+
+.temp-container span{
+   font-size: 18px;
+   position: absolute;
+   left: 3.25rem;
+   top: .75rem;
+}
+
+.weather-descriptor{
+   position: relative;
 }
 
 .time-slots{

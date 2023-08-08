@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DataServiceService } from '../data-service.service';
 import { DatePipe } from '@angular/common';
+import { DataFetchService } from '../data-fetch.service';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-alert',
@@ -12,28 +13,51 @@ import { DatePipe } from '@angular/common';
 export class AlertComponent {
    mySubscription: Subscription;
 
-   response: any;
    event_name: string;
    start: string;
    end: string;
    descriptor: string;
    tags: string;
-   alerts: any;
+   alerts: any = `
+      <div class="alert-container">   
+         <div class="info">
+            <div class="event-name">NO CURRENT ALERTS</div>
+         </div>
+         <div class="descriptor">
+            At this current location there is no ongoing weather alerts present.
+         </div>
+      </div>`;
+
+   
+   searchQuery:any = {latitude: 0, longitude: 0};
+   weatherInfo = {
+      alertInfo: {}
+   }
 
    constructor(
-      private dataService: DataServiceService,
+      private fetchService: DataFetchService,
       private datepipe: DatePipe,
+      private dataService: DataServiceService,
    ){
       this.mySubscription = dataService.newData.subscribe((data) => {
-         this.response = data;
-         for(const alertList in this.response.alerts){
-            this.event_name = capital_letter(this.response.alerts[0].event);
+         this.searchQuery = data
+         if(this.searchQuery.latitude != undefined){      
+            this.weatherInfo = this.fetchService.fetchWeatherInfo(this.searchQuery);
+            setTimeout(() => this.updateAlert(), 200);   
+         }
+      });
+   }
 
-            this.start = `Issued at ${this.datepipe.transform(new Date, 'EEEE h:mm a MMMM dd', `${this.response.alerts[0].start}`)}`;
-            this.end = this.datepipe.transform(new Date, 'h:mm a',`${this.response.alerts[0].end}`);
-
-            this.descriptor = this.response.alerts[0].description;
-            this.tags = this.response.alerts[0].tags;
+   updateAlert(){
+      if(this.weatherInfo.alertInfo != undefined){
+         for(const alertList in this.weatherInfo.alertInfo){
+            this.event_name = capital_letter(this.weatherInfo.alertInfo[0].event);
+   
+            this.start = `Issued at ${this.datepipe.transform(new Date, 'EEEE h:mm a MMMM dd', `${this.weatherInfo.alertInfo[0].start}`)}`;
+            this.end = this.datepipe.transform(new Date, 'h:mm a',`${this.weatherInfo.alertInfo[0].end}`);
+   
+            this.descriptor = this.weatherInfo.alertInfo[0].description;
+            this.tags = this.weatherInfo.alertInfo[0].tags;
    
             this.alerts = `    
             <div class="alert-container">   
@@ -47,7 +71,17 @@ export class AlertComponent {
             </div>
             ` 
          }
-      });
+      } else {
+         this.alerts = `
+         <div class="alert-container">   
+            <div class="info">
+               <div class="event-name">NO CURRENT ALERTS</div>
+            </div>
+            <div class="descriptor">
+               At this current location there is no ongoing weather alerts present.
+            </div>
+         </div>`;
+      }
    }
 }
 
