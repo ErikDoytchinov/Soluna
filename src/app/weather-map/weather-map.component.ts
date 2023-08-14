@@ -30,6 +30,22 @@ export class WeatherMapComponent {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
    });
 
+   cloudsLayer = Leaflet.tileLayer('https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=1e9a2252a81388fe3fff130f96a58827', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+   });
+
+   pressureLayer = Leaflet.tileLayer('https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=1e9a2252a81388fe3fff130f96a58827', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+   });
+
+   windLayer = Leaflet.tileLayer('https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=1e9a2252a81388fe3fff130f96a58827', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+   });
+
+   tempLayer = Leaflet.tileLayer('https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=1e9a2252a81388fe3fff130f96a58827', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+   });
+
    weatherInfo = {
       image: "/assets/icons/01d.png",
       temperature: "loading...",
@@ -78,7 +94,8 @@ export class WeatherMapComponent {
    markers: Leaflet.Marker[] = [];
    options = {
       layers: [
-         this.mapLayer = Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         // `https://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png`
+         this.mapLayer = Leaflet.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
          })
       ],
@@ -89,7 +106,7 @@ export class WeatherMapComponent {
    onMapReady($event: Leaflet.Map) {
       this.map = $event;
       //will get the location of user and move window to it.
-      this.map.locate({setView: true, maxZoom: 16})        
+      this.map.locate({setView: true, maxZoom: 12})        
       .on('locationfound', (e) => {
          var marker = Leaflet.marker(e.latlng).bindPopup('Your are here :)');
          var circle = Leaflet.circle((e.latlng), e.accuracy/2, {
@@ -120,6 +137,26 @@ export class WeatherMapComponent {
             if(!this.map.hasLayer(this.precipitationLayer)){
                this.map.addLayer(this.precipitationLayer);
             } else {this.map.removeLayer(this.precipitationLayer);}
+            break;
+         case "clouds":
+            if(!this.map.hasLayer(this.cloudsLayer)){
+               this.map.addLayer(this.cloudsLayer);
+            } else {this.map.removeLayer(this.cloudsLayer);}
+            break;
+         case "pressure":
+            if(!this.map.hasLayer(this.pressureLayer)){
+               this.map.addLayer(this.pressureLayer);
+            } else {this.map.removeLayer(this.pressureLayer);}
+            break;
+         case "wind":
+            if(!this.map.hasLayer(this.windLayer)){
+               this.map.addLayer(this.windLayer);
+            } else {this.map.removeLayer(this.windLayer);}
+            break;
+         case "temp":
+            if(!this.map.hasLayer(this.tempLayer)){
+               this.map.addLayer(this.tempLayer);
+            } else {this.map.removeLayer(this.tempLayer);}
             break;
          default:
             break;
