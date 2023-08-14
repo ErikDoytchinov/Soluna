@@ -16,7 +16,6 @@ export class SettingsComponent {
    ngOnInit(){
       if(localStorage.getItem("measurement") != undefined){
          if(localStorage.getItem("measurement") == "imperial") {
-            console.log("hey")
             this.measurement = true;
          }
       }
@@ -26,9 +25,9 @@ export class SettingsComponent {
       
       const farenheit = targetCheckBox.checked;
       if(farenheit){
-         this.dataService.publish("imperial");
+         localStorage.setItem("measurement", "imperial");
       } else {
-         this.dataService.publish("metric");
+         localStorage.setItem("measurement", "metric");
       }
    }
 }

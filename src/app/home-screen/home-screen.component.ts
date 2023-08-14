@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataServiceService } from '../data-service.service';
 import { Subscription, interval } from 'rxjs';
 import * as moment from 'moment';
-import { DataFetchService } from '../data-fetch.service';
+import { DataFetchService, WeatherInfo } from '../data-fetch.service';
 
 
 @Component({
@@ -18,54 +18,12 @@ export class HomeScreenComponent implements OnInit{
    lastUpdate:string = moment().format("h:mm a");
    measurement:string = "metric";
 
-   public searchQuery:any = {latitude: 0, longitude: 0};
-
-   weatherInfo = {
-      image: "/assets/icons/01d.png",
-      temperature: "loading...",
-      location: "loading...",
-      time: "loading...",
-      date: "loading...",
-      feelsLike: "loading...",
-      humidity: 0,
-      uvIndex: "0",
-      visibility: 0,
-      wind: "loading...",
-      precipitation: "∞",
-      weather_descriptor: "loading...",
-
-      hourInfo: {
-         hour: [
-            {id: 1, time:undefined,weather:undefined,img:undefined},
-            {id: 2, time:undefined,weather:undefined,img:undefined},
-            {id: 3, time:undefined,weather:undefined,img:undefined},
-            {id: 4, time:undefined,weather:undefined,img:undefined},
-            {id: 5, time:undefined,weather:undefined,img:undefined},
-            {id: 6, time:undefined,weather:undefined,img:undefined},
-            {id: 7, time:undefined,weather:undefined,img:undefined},
-            {id: 8, time:undefined,weather:undefined,img:undefined},
-            {id: 9, time:undefined,weather:undefined,img:undefined},
-            {id: 10, time:undefined,weather:undefined,img:undefined},
-            {id: 11, time:undefined,weather:undefined,img:undefined},
-            {id: 12, time:undefined,weather:undefined,img:undefined},
-         ]
-      },
-
-      dayInfo: {
-         day: [
-            {id: 1,date:undefined,img:undefined,min:undefined,max:undefined,weather:undefined},
-            {id: 2,date:undefined,img:undefined,min:undefined,max:undefined,weather:undefined},
-            {id: 3,date:undefined,img:undefined,min:undefined,max:undefined,weather:undefined},
-            {id: 4,date:undefined,img:undefined,min:undefined,max:undefined,weather:undefined},
-            {id: 5,date:undefined,img:undefined,min:undefined,max:undefined,weather:undefined},
-            {id: 6,date:undefined,img:undefined,min:undefined,max:undefined,weather:undefined},
-         ]
-      }
-   }
+   private searchQuery:any = {latitude: 0, longitude: 0};
+   public weatherInfo: WeatherInfo;
 
    constructor(
       private dataService: DataServiceService,
-      private fetchService: DataFetchService
+      private fetchService: DataFetchService,
    ){
       this.mySubscription = dataService.newData.subscribe((data) => {
          this.searchQuery = data
@@ -73,9 +31,6 @@ export class HomeScreenComponent implements OnInit{
             this.updateWebsite();
          } else if(this.searchQuery.current != undefined){
             return;
-         } else {
-            //this.measurement = data
-            localStorage.setItem("measurement", this.measurement);
          }
       });
 
@@ -97,7 +52,8 @@ export class HomeScreenComponent implements OnInit{
       this.mySubscription.unsubscribe(); // Unsubscribe Observable
    }
 
-   updateWebsite(){
+   async updateWebsite(){
+      this.measurement = localStorage.getItem("measurement");
       this.weatherInfo = this.fetchService.fetchWeatherInfo(this.searchQuery);
    }
   
