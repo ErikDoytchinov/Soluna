@@ -44,6 +44,7 @@ export class HomeScreenComponent implements OnInit{
    ngOnInit(){
       this.getLocation();
 
+      this.weatherInfo = this.fetchService.weatherInfo;
       var element = document.getElementsByClassName('body-class');
       element[0].classList.add("body-class-present");
    }
@@ -54,7 +55,7 @@ export class HomeScreenComponent implements OnInit{
 
    async updateWebsite(){
       this.measurement = localStorage.getItem("measurement");
-      this.weatherInfo = this.fetchService.fetchWeatherInfo(this.searchQuery);
+      this.fetchService.fetchWeatherInfo(this.searchQuery);      
    }
   
    getLocation() {
