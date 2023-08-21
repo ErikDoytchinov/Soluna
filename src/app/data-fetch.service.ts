@@ -81,7 +81,7 @@ export class DataFetchService {
       let lat, lng: number;
       if(localStorage.getItem("measurement") != undefined) {measurement = localStorage.getItem("measurement")}
       //let url = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&appid=1e9a2252a81388fe3fff130f96a58827&units=${measurement}`
-      let url = "http://127.0.0.1:3000/api/world";
+      let url = `http://127.0.0.1:3000/api/?lat=${latitude}&lon=${longitude}&measurement=${measurement}`;
       this.http.get<any>(url,{responseType:'json'})
          .subscribe((response)=> {
             console.log(response)

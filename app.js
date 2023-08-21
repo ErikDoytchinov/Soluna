@@ -10,13 +10,9 @@ const port = 3000;
 
 const app = express();
 app.use(cors());
-
-// app.get('/api/*', function (req, res) {
-//     res.sendFile(process.cwd()+"/src" + req.url);
-// });
  
-app.get('/api/world', async function (req, res) {
-    res.send(await fetchWeatherInfo());
+app.get('/api/', async function (req, res) {
+    res.send(await fetchWeatherInfo(req.query.lat, req.query.lon, req.query.measurement));
 });
 
 var server = app.listen(port, hostname, function () {
