@@ -24,6 +24,7 @@ var server = app.listen(port, hostname, function () {
 
 async function fetchWeatherInfo(latitude = 0, longitude = 0, measurement = "metric"){
     if(cache.get(`${latitude},${longitude} - (${measurement})`) != null){
+        console.log('File retrieved from storage!')
         weather = cache.get(`${latitude},${longitude} - (${measurement})`);
         return weather;
     } else {
@@ -33,6 +34,7 @@ async function fetchWeatherInfo(latitude = 0, longitude = 0, measurement = "metr
         cache.put(`${latitude},${longitude} - (${measurement})`, data, 18000, (key, value) => {
             console.log(`File has expired: ${key}, ${value}`);
         }); 
+        console.log(`File has been created: ${latitude},${longitude} - (${measurement})}`);
         weather = cache.get(`${latitude},${longitude} - (${measurement})`);
         return weather;
     }
