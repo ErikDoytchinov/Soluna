@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as Leaflet from 'leaflet'; 
+import * as Leaflet from 'leaflet';
 import { DatePipe, formatNumber } from '@angular/common';
 import { DataFetchService, WeatherInfo } from '../data-fetch.service';
 
@@ -64,15 +64,16 @@ export class WeatherMapComponent {
    onMapReady($event: Leaflet.Map) {
       this.map = $event;
       //will get the location of user and move window to it.
-      this.map.locate({setView: true, maxZoom: 12})        
+      this.map.locate({setView: true, maxZoom: 12})
       .on('locationfound', (e) => {
          var marker = Leaflet.marker(e.latlng).bindPopup('Your are here :)');
-         var circle = Leaflet.circle((e.latlng), e.accuracy/2, {
-            weight: 1,
-            color: 'blue',
-            fillColor: '#cacaca',
-            fillOpacity: 0.2
-         });
+         var circle = Leaflet.circle(e.latlng, {
+          radius: e.accuracy / 2,
+          weight: 1,
+          color: 'blue',
+          fillColor: '#cacaca',
+          fillOpacity: 0.2
+        });
          this.map.addLayer(marker);
          this.map.addLayer(circle);
 
